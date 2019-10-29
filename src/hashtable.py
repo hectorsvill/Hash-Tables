@@ -16,8 +16,6 @@ class HashTable:
         self.capacity = capacity  # Number of buckets in the hash table
         self.storage = [None] * capacity
 
-        self.size = 0
-
 
     def _hash(self, key):
         '''
@@ -53,11 +51,9 @@ class HashTable:
 
         Fill this in.
         '''
+        index = self._hash_mod(key)
         linkPair = LinkedPair(key, value)
-        self.storage[self.size] = linkPair
-
-
-        self.size += 1
+        self.storage[index] = linkPair
 
 
 
@@ -80,6 +76,11 @@ class HashTable:
 
         Fill this in.
         '''
+
+        for key in self.storage: 
+            if key == key.key:
+                return key 
+
         pass
 
 
@@ -101,6 +102,7 @@ if __name__ == "__main__":
     ht.insert("line_2", "Filled beyond capacity")
     # ht.insert("line_3", "Linked list saves the day!")
 
+    print((ht.storage[0]).key)
     # print("")
 
     # # Test storing beyond capacity
@@ -120,4 +122,6 @@ if __name__ == "__main__":
     # print(ht.retrieve("line_2"))
     # print(ht.retrieve("line_3"))
 
-    # print("")
+
+
+
