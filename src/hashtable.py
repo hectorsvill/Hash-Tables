@@ -51,12 +51,13 @@ class HashTable:
         #create link pair 
         linkPair = LinkedPair(key, value)
         # check if hashtable is empty
-        if self.storage[index] is None:
+        if self.storage[index] == None:
             # add to respective bucket
             self.storage[index] = linkPair
         else:
             head = self.storage[index]
             while head:
+                print(head.key)
                 head = head.next
             head = linkPair
 
@@ -82,6 +83,7 @@ class HashTable:
         '''
         #find index
         index = self._hash_mod(key)
+        # print(index)
         storage = self.storage[index]
         if storage is None:
             return None
@@ -92,6 +94,8 @@ class HashTable:
             while head:
                 if head.key == self._hash(key):
                     return head.value
+
+                head = head.next
     def resize(self):
         '''
         Doubles the capacity of the hash table and
@@ -110,8 +114,7 @@ class HashTable:
                 print("🗑", end="")
             else:
                 head = bucket
-                print(head.key, end=" ")
-                while head:
+                while head != None:
                     print(head.key, end=" ")
                     head = head.next
             
@@ -124,19 +127,21 @@ if __name__ == "__main__":
     # 
     # 
     
-    ht = HashTable(8)
+    ht = HashTable(2)
     ht.insert("key-0", "val-0")
     ht.insert("key-1", "val-1")
     ht.insert("key-2", "val-2")
     ht.insert("key-3", "val-3")
-    ht.insert("key-4", "val-4")
-    ht.insert("key-5", "val-5")
-    ht.insert("key-6", "val-6")
-    ht.insert("key-7", "val-7")
-    ht.insert("key-8", "val-8")
-    ht.insert("key-9", "val-9")
+    # ht.insert("key-4", "val-4")
+    # ht.insert("key-5", "val-5")
+    # ht.insert("key-6", "val-6")
+    # ht.insert("key-7", "val-7")
+    # ht.insert("key-8", "val-8")
+    # ht.insert("key-9", "val-9")
 
-    ht.printBucketKeys()
+    # ht.printBucketKeys()
+    # print(ht.retrieve("key-0"))
+    print((ht.storage[0]).key)
     # print("")
 
     # # Test storing beyond capacity
