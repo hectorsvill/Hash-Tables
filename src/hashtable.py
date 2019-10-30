@@ -16,7 +16,7 @@ class HashTable:
         self.capacity = capacity  # Number of buckets in the hash table
         self.storage = [None] * capacity
 
-
+    # check hash mod
     def _hash(self, key):
         '''
         Hash an arbitrary key and return an integer.
@@ -51,7 +51,9 @@ class HashTable:
 
         Fill this in.
         '''
+
         index = self._hash_mod(key)
+        print(index)
         linkPair = LinkedPair(key, value)
         self.storage[index] = linkPair
 
@@ -96,13 +98,16 @@ class HashTable:
 
 
 if __name__ == "__main__":
-    ht = HashTable(2)
+    
+    # hashtable only has 3 buckets
+    ht = HashTable(3)
 
-    ht.insert("line_1", "Tiny hash table")
-    ht.insert("line_2", "Filled beyond capacity")
+    ht.insert("key-0","this is a zero")
+    ht.insert("key-1", "Tiny hash table")
+    ht.insert("key-2", "Filled beyond capacity")
     # ht.insert("line_3", "Linked list saves the day!")
 
-    print((ht.storage[0]).key)
+    print((ht.storage[1]))
     # print("")
 
     # # Test storing beyond capacity
