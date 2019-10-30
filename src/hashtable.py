@@ -51,13 +51,13 @@ class HashTable:
 
         Fill this in.
         '''
-
+        # create index with hash_mod
         index = self._hash_mod(key)
-        print(index)
+        # print(index)
+        #create link pair 
         linkPair = LinkedPair(key, value)
+        # add to respective bucket
         self.storage[index] = linkPair
-
-
 
     def remove(self, key):
         '''
@@ -96,6 +96,20 @@ class HashTable:
         pass
 
 
+    ## helpers 
+
+    def printBucketKeys(self):
+        for bucket in self.storage:
+            if bucket == None:
+                print("Empty bucket", end="")
+            else:
+                head = bucket
+                while head:
+                    print(head.key, end=" ")
+                    head = head.next
+            
+            print("")
+
 
 if __name__ == "__main__":
     
@@ -105,9 +119,9 @@ if __name__ == "__main__":
     ht.insert("key-0","this is a zero")
     ht.insert("key-1", "Tiny hash table")
     ht.insert("key-2", "Filled beyond capacity")
-    # ht.insert("line_3", "Linked list saves the day!")
+    # ht.insert("key-3", "Linked list saves the day!")
 
-    print((ht.storage[1]))
+    ht.printBucketKeys()
     # print("")
 
     # # Test storing beyond capacity
