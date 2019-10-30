@@ -55,16 +55,10 @@ class HashTable:
             # add to respective bucket
             self.storage[index] = linkPair
         else:
-
             head = self.storage[index]
-            
-            if head.next is None:
-                pass
-            else:   
-                while head:
-                    head = head.next
-
-            head.next = linkPair
+            while head:
+                head = head.next
+            head = linkPair
 
 
     def remove(self, key):
@@ -86,14 +80,18 @@ class HashTable:
 
         Fill this in.
         '''
-
-        for key in self.storage: 
-            if key == key.key:
-                return key 
-
-        pass
-
-
+        #find index
+        index = self._hash_mod(key)
+        storage = self.storage[index]
+        if storage is None:
+            return None
+        else:
+            head = storage
+            if head.key == self._hash(key):
+                return head.value
+            while head:
+                if head.key == self._hash(key):
+                    return head.value
     def resize(self):
         '''
         Doubles the capacity of the hash table and
@@ -109,9 +107,10 @@ class HashTable:
     def printBucketKeys(self):
         for bucket in self.storage:
             if bucket == None:
-                print("Empty-bucket", end="")
+                print("🗑", end="")
             else:
                 head = bucket
+                print(head.key, end=" ")
                 while head:
                     print(head.key, end=" ")
                     head = head.next
@@ -122,12 +121,20 @@ class HashTable:
 if __name__ == "__main__":
     
     # hashtable only has 3 buckets
-    ht = HashTable(3)
-
-    ht.insert("key-0","this is a zero")
-    ht.insert("key-1", "Tiny hash table")
-    ht.insert("key-2", "Filled beyond capacity")
-    # ht.insert("key-3", "Linked list saves the day!")
+    # 
+    # 
+    
+    ht = HashTable(8)
+    ht.insert("key-0", "val-0")
+    ht.insert("key-1", "val-1")
+    ht.insert("key-2", "val-2")
+    ht.insert("key-3", "val-3")
+    ht.insert("key-4", "val-4")
+    ht.insert("key-5", "val-5")
+    ht.insert("key-6", "val-6")
+    ht.insert("key-7", "val-7")
+    ht.insert("key-8", "val-8")
+    ht.insert("key-9", "val-9")
 
     ht.printBucketKeys()
     # print("")
