@@ -56,10 +56,12 @@ class HashTable:
             self.storage[index] = linkPair
         else:
             head = self.storage[index]
-            while head:
-                print(head.key)
-                head = head.next
-            head = linkPair
+            if head.next is None:
+                head.next = linkPair
+            else:
+                while head:
+                    head = head.next
+                head = linkPair
 
 
     def remove(self, key):
@@ -114,7 +116,7 @@ class HashTable:
                 print("🗑", end="")
             else:
                 head = bucket
-                while head != None:
+                while head:
                     print(head.key, end=" ")
                     head = head.next
             
@@ -139,9 +141,9 @@ if __name__ == "__main__":
     # ht.insert("key-8", "val-8")
     # ht.insert("key-9", "val-9")
 
-    # ht.printBucketKeys()
+    ht.printBucketKeys()
     # print(ht.retrieve("key-0"))
-    print((ht.storage[0]).key)
+    print((ht.storage[0]).next)
     # print("")
 
     # # Test storing beyond capacity
