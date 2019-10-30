@@ -15,8 +15,7 @@ class HashTable:
     def __init__(self, capacity):
         self.capacity = capacity  # Number of buckets in the hash table
         self.storage = [None] * capacity
-
-    # check hash mod
+    # check _hash_mod
     def _hash(self, key):
         '''
         Hash an arbitrary key and return an integer.
@@ -24,8 +23,6 @@ class HashTable:
         You may replace the Python hash with DJB2 as a stretch goal.
         '''
         return hash(key)
-
-
     def _hash_djb2(self, key):
         '''
         Hash an arbitrary key using DJB2 hash
@@ -34,15 +31,13 @@ class HashTable:
         '''
         pass
 
-
+        #look at _hash
     def _hash_mod(self, key):
         '''
         Take an arbitrary key and return a valid integer index
         within the storage capacity of the hash table.
         '''
         return self._hash(key) % self.capacity
-
-
     def insert(self, key, value):
         '''
         Store the value with the given key.
@@ -53,11 +48,24 @@ class HashTable:
         '''
         # create index with hash_mod
         index = self._hash_mod(key)
-        # print(index)
         #create link pair 
         linkPair = LinkedPair(key, value)
-        # add to respective bucket
-        self.storage[index] = linkPair
+        # check if hashtable is empty
+        if self.storage[index] is None:
+            # add to respective bucket
+            self.storage[index] = linkPair
+        else:
+
+            head = self.storage[index]
+            
+            if head.next is None:
+                pass
+            else:   
+                while head:
+                    head = head.next
+
+            head.next = linkPair
+
 
     def remove(self, key):
         '''
@@ -101,7 +109,7 @@ class HashTable:
     def printBucketKeys(self):
         for bucket in self.storage:
             if bucket == None:
-                print("Empty bucket", end="")
+                print("Empty-bucket", end="")
             else:
                 head = bucket
                 while head:
