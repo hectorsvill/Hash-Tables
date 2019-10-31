@@ -66,12 +66,13 @@ class HashTable:
             # add to respective bucket
             self.storage[index] = linkPair
         else:
-            print("bucket is not empty  ")
-            (self.storage[index]).insert(key,value)
-            # head = (self.storage[index])
-            # while head:
-            #     head = head.next
-            # head = linkPair
+            # print("bucket is not empty  ")
+            #(self.storage[index]).insert(key,value)
+            head = self.storage[index]
+            # print(head)
+            while head.next is not None:
+                head = head.next
+            head.next = linkPair
 
 
 
@@ -83,6 +84,8 @@ class HashTable:
 
         Fill this in.
         '''
+        # reconect link list
+
         pass
 
 
@@ -102,13 +105,13 @@ class HashTable:
             return None
         else:
             head = storage
-            if head.key == self._hash(key):
+            if head.key == key:
                 return head.value
             while head:
-                if head.key == self._hash(key):
+                if head.key == key:
                     return head.value
-
                 head = head.next
+
     def resize(self):
         '''
         Doubles the capacity of the hash table and
@@ -140,7 +143,7 @@ if __name__ == "__main__":
     # 
     # 
     
-    ht = HashTable(2)
+    ht = HashTable(8)
     ht.insert("key-0", "val-0")
     ht.insert("key-1", "val-1")
     ht.insert("key-2", "val-2")
@@ -153,7 +156,7 @@ if __name__ == "__main__":
     ht.insert("key-9", "val-9")
 
     ht.printBucketKeys()
-    # print(ht.retrieve("key-0"))
+    print(ht.retrieve("key-0"))
     # print((ht.storage[0]).next)
     # print((ht.storage[1]).next)
     # print("")
