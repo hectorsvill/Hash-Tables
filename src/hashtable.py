@@ -78,7 +78,6 @@ class HashTable:
         # reconect link list
         index = self._hash_mod(key)
         storage = self.storage[index]
-
         if storage.next is None:
             self.storage[index] = None
         else:
@@ -87,14 +86,10 @@ class HashTable:
             prev = None
             while head is not None:
                 if head.key == key:
-                    print(f"\nfound {head.key}\n")
                     break
                 prev = head
                 head = head.next
-            
             prev.next = head.next
-
-
     def retrieve(self, key):
         '''
         Retrieve the value stored with the given key.
@@ -116,7 +111,6 @@ class HashTable:
                     return head.value
                 else:
                     head = head.next
-
     def resize(self):
         '''
         Doubles the capacity of the hash table and
@@ -124,7 +118,14 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        self.capacity *= 2
+        self.new_storage = [None] * self.capacity
+        for bucket in self.storage:
+            if bucket is not None:
+
+                print(bucket)
+
+
 
 
     # helpers 
@@ -142,6 +143,8 @@ class HashTable:
 
 if __name__ == "__main__": 
     ht = HashTable(2)    
+    
+    
     ht.insert("key-0", "val-0")
     ht.insert("key-1", "val-1")
     ht.insert("key-2", "val-2")
@@ -149,7 +152,8 @@ if __name__ == "__main__":
     ht.insert("key-4", "val-4")
     ht.insert("key-5", "val-5")
     
+    ht.resize()
 
     ht.printBucketKeys()
-    ht.remove("key-2")
-    ht.printBucketKeys()
+    # ht.remove("key-2")
+    # ht.printBucketKeys()
