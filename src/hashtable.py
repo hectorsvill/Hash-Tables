@@ -7,16 +7,6 @@ class LinkedPair:
         self.value = value
         self.next = None
 
-    def insert(self, key, value):
-        l = LinkedPair(key, value)
-        if self.next is None:
-            self.next = l
-        else:
-            head = self.next
-            while head:
-                head = head.next
-            head = l
-
 
 class HashTable:
     '''
@@ -61,7 +51,6 @@ class HashTable:
         index = self._hash_mod(key)
         #create link pair 
         linkPair = LinkedPair(key, value)
-
         # check if hashtable is empty
         if self.storage[index] == None:
             # add to respective bucket
@@ -110,12 +99,11 @@ class HashTable:
             return None
         else:
             head = storage
-            if head.key == key:
-                return head.value
-            while head:
+            while head is not None:
                 if head.key == key:
                     return head.value
-                head = head.next
+                else:
+                    head = head.next
 
     def resize(self):
         '''
@@ -153,12 +141,12 @@ if __name__ == "__main__":
     ht.insert("key-3", "val-3")
     ht.insert("key-4", "val-4")
     ht.insert("key-5", "val-5")
-    ht.insert("key-6", "val-6")
-    ht.insert("key-7", "val-7")
-    ht.insert("key-8", "val-8")
-    ht.insert("key-9", "val-9")
+    # ht.insert("key-6", "val-6")
+    # ht.insert("key-7", "val-7")
+    # ht.insert("key-8", "val-8")
+    # ht.insert("key-9", "val-9")
 
     ht.printBucketKeys()
-    ht.insert("key-9", "new val-9")
-    print(ht.retrieve("key-9"))
-    ht.printBucketKeys()
+    # ht.insert("key-0", "new val-0")
+    print(ht.retrieve("key-3"))
+    # ht.printBucketKeys()
