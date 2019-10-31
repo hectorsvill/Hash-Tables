@@ -6,15 +6,15 @@ class LinkedPair:
         self.key = key
         self.value = value
         self.next = None
-    def insert(self, key, value):
-        l = LinkedPair(key, value)
-        if self.next is None:
-            self.next = l
-        else:
-            head = self.next
-            while head:
-                head = head.next
-            head = l
+    # def insert(self, key, value):
+    #     l = LinkedPair(key, value)
+    #     if self.next is None:
+    #         self.next = l
+    #     else:
+    #         head = self.next
+    #         while head:
+    #             head = head.next
+    #         head = l
 
 
 class HashTable:
@@ -137,56 +137,24 @@ class HashTable:
             print("")
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
     # hashtable only has 3 buckets
     # 
     # 
     
-    ht = HashTable(8)
-    ht.insert("key-0", "val-0")
-    ht.insert("key-1", "val-1")
-    ht.insert("key-2", "val-2")
-    ht.insert("key-3", "val-3")
-    ht.insert("key-4", "val-4")
-    ht.insert("key-5", "val-5")
-    ht.insert("key-6", "val-6")
-    ht.insert("key-7", "val-7")
-    ht.insert("key-8", "val-8")
-    ht.insert("key-9", "val-9")
+    # ht = HashTable(3)
+    # ht.insert("key-0", "val-0")
+    # ht.insert("key-1", "val-1")
+    # ht.insert("key-2", "val-2")
+    # ht.insert("key-3", "val-3")
+    # ht.insert("key-4", "val-4")
+    # ht.insert("key-5", "val-5")
+    # ht.insert("key-6", "val-6")
+    # ht.insert("key-7", "val-7")
+    # ht.insert("key-8", "val-8")
+    # ht.insert("key-9", "val-9")
 
-    ht.printBucketKeys()
-    print(ht.retrieve("key-0"))
-    # print((ht.storage[0]).next)
-    # print((ht.storage[1]).next)
-    # print("")
-
-    # # Test storing beyond capacity
-    # print(ht.retrieve("line_1"))
-    # print(ht.retrieve("line_2"))
-    # print(ht.retrieve("line_3"))
-
-    # # Test resizing
-    # old_capacity = len(ht.storage)
-    # ht.resize()
-    # new_capacity = len(ht.storage)
-
-    # print(f"\nResized from {old_capacity} to {new_capacity}.\n")
-
-    # # Test if data intact after resizing
-    # print(ht.retrieve("line_1"))
-    # print(ht.retrieve("line_2"))
-    # print(ht.retrieve("line_3"))
-
-
-    # l1 = LinkedPair(1,1)
-    # l2 = LinkedPair(2,2)
-    # l3 = LinkedPair(3,3)
-    # l1.next = l2
-    # l2.next = l3
-    # head = l1
-    # while head:
-    #     print(head.key)
-    #     head = head.next
-
-
+    # # ht.printBucketKeys()
+    # print(ht.retrieve("key-9"))
+    
