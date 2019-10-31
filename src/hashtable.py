@@ -72,11 +72,12 @@ class HashTable:
             head = self.storage[index]
             # print(head)
             while head.next is not None:
-                if head.key == key:
-                    head.value = value
-                    return
                 head = head.next
-            head.next = linkPair
+            # check if key exist
+            if head.key == key:
+                    head.value = value
+            else: 
+                head.next = linkPair
 
 
 
@@ -158,12 +159,6 @@ if __name__ == "__main__":
     ht.insert("key-9", "val-9")
 
     ht.printBucketKeys()
-    print("")
-    ht.insert("key-9", "new val-9")
-    print(ht.retrieve("key-9"))
-    
-    
-    print("")
     ht.insert("key-9", "new val-9")
     print(ht.retrieve("key-9"))
     ht.printBucketKeys()
