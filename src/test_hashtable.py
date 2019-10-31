@@ -2,12 +2,10 @@ import unittest
 
 from hashtable import HashTable
 
-
 class TestHashTable(unittest.TestCase):
-
     def test_hash_table_insertion_and_retrieval(self):
         ht = HashTable(8)
-
+        
         ht.insert("key-0", "val-0")
         ht.insert("key-1", "val-1")
         ht.insert("key-2", "val-2")
