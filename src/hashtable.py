@@ -6,15 +6,16 @@ class LinkedPair:
         self.key = key
         self.value = value
         self.next = None
-    # def insert(self, key, value):
-    #     l = LinkedPair(key, value)
-    #     if self.next is None:
-    #         self.next = l
-    #     else:
-    #         head = self.next
-    #         while head:
-    #             head = head.next
-    #         head = l
+
+    def insert(self, key, value):
+        l = LinkedPair(key, value)
+        if self.next is None:
+            self.next = l
+        else:
+            head = self.next
+            while head:
+                head = head.next
+            head = l
 
 
 class HashTable:
@@ -71,6 +72,9 @@ class HashTable:
             head = self.storage[index]
             # print(head)
             while head.next is not None:
+                if head.key == key:
+                    head.value = value
+                    return
                 head = head.next
             head.next = linkPair
 
@@ -137,24 +141,29 @@ class HashTable:
             print("")
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__": 
     
     # hashtable only has 3 buckets
-    # 
-    # 
-    
-    # ht = HashTable(3)
-    # ht.insert("key-0", "val-0")
-    # ht.insert("key-1", "val-1")
-    # ht.insert("key-2", "val-2")
-    # ht.insert("key-3", "val-3")
-    # ht.insert("key-4", "val-4")
-    # ht.insert("key-5", "val-5")
-    # ht.insert("key-6", "val-6")
-    # ht.insert("key-7", "val-7")
-    # ht.insert("key-8", "val-8")
-    # ht.insert("key-9", "val-9")
 
-    # # ht.printBucketKeys()
-    # print(ht.retrieve("key-9"))
+    ht = HashTable(2)
+    ht.insert("key-0", "val-0")
+    ht.insert("key-1", "val-1")
+    ht.insert("key-2", "val-2")
+    ht.insert("key-3", "val-3")
+    ht.insert("key-4", "val-4")
+    ht.insert("key-5", "val-5")
+    ht.insert("key-6", "val-6")
+    ht.insert("key-7", "val-7")
+    ht.insert("key-8", "val-8")
+    ht.insert("key-9", "val-9")
+
+    ht.printBucketKeys()
+    print("")
+    ht.insert("key-9", "new val-9")
+    print(ht.retrieve("key-9"))
     
+    
+    print("")
+    ht.insert("key-9", "new val-9")
+    print(ht.retrieve("key-9"))
+    ht.printBucketKeys()
