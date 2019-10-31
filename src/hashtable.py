@@ -67,9 +67,6 @@ class HashTable:
                 head.value = value
             else:
                 head.next = linkPair
-
-
-
     def remove(self, key):
         '''
         Remove the value stored with the given key.
@@ -79,8 +76,23 @@ class HashTable:
         Fill this in.
         '''
         # reconect link list
+        index = self._hash_mod(key)
+        storage = self.storage[index]
 
-        pass
+        if storage.next is None:
+            self.storage[index] = None
+        else:
+            # stoer current and previous 
+            head = storage
+            prev = None
+            while head is not None:
+                if head.key == key:
+                    print(f"\nfound {head.key}\n")
+                    break
+                prev = head
+                head = head.next
+            
+            prev.next = head.next
 
 
     def retrieve(self, key):
@@ -116,43 +128,28 @@ class HashTable:
 
 
     # helpers 
-    # def printBucketKeys(self):
-    #     for bucket in self.storage:
-    #         if bucket == None:
-    #             print("[]")
-    #         else:
-    #             head = bucket
-    #             while head:
-    #                 print(head.value, end=" ")
-    #                 head = head.next
-            
-    #         print("")
+    def printBucketKeys(self):
+        for bucket in self.storage:
+            if bucket == None:
+                print("[]")
+            else:
+                head = bucket
+                while head:
+                    print(head.value, end=" ")
+                    head = head.next
+            print("")
 
 
 if __name__ == "__main__": 
-    ht = HashTable(3)    
+    ht = HashTable(2)    
     ht.insert("key-0", "val-0")
     ht.insert("key-1", "val-1")
     ht.insert("key-2", "val-2")
     ht.insert("key-3", "val-3")
     ht.insert("key-4", "val-4")
     ht.insert("key-5", "val-5")
-    ht.insert("key-6", "val-6")
-    ht.insert("key-7", "val-7")
-    ht.insert("key-8", "val-8")
-    ht.insert("key-9", "val-9")
+    
 
     ht.printBucketKeys()
-    print("")
-    ht.insert("key-0", "new-val-0")
-    ht.insert("key-1", "new-val-1")
-    ht.insert("key-2", "new-val-2")
-    ht.insert("key-3", "new-val-3")
-    ht.insert("key-4", "new-val-4")
-    ht.insert("key-5", "new-val-5")
-    ht.insert("key-6", "new-val-6")
-    ht.insert("key-7", "new-val-7")
-    ht.insert("key-8", "new-val-8")
-    ht.insert("key-9", "new-val-9")
-
+    ht.remove("key-2")
     ht.printBucketKeys()
