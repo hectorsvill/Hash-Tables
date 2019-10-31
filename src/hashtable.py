@@ -118,12 +118,18 @@ class HashTable:
 
         Fill this in.
         '''
+        old_storage  = self.storage
         self.capacity *= 2
-        self.new_storage = [None] * self.capacity
-        for bucket in self.storage:
-            if bucket is not None:
-
-                print(bucket)
+        self.storage = [None] * self.capacity
+        
+        for bucket in old_storage:
+            if bucket == None:
+                pass
+            else:
+                head = bucket
+                while head:
+                    self.insert(head.key, head.value)
+                    head = head.next
 
 
 
@@ -136,7 +142,7 @@ class HashTable:
             else:
                 head = bucket
                 while head:
-                    print(head.value, end=" ")
+                    print(head.key, end=" ")
                     head = head.next
             print("")
 
